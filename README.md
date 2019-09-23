@@ -7,8 +7,13 @@ Source Code and Data: [Original Wolfram Language version][2] and [Python version
 1. download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository is for Chrome version 77 only)
 2. Select papers from your references management software (e.g. Mendeley) and export to .bib file.
 3. run **Citation_Tree.py** to draw citation graph
-4. If the graph doesn't look good, you may want to change figsize and rerun the "last 3 lines only"
-5. Or you may re-run starting from the line "posi={}"
+
+Notes:
+
+1. This Python version can only draw [DAG][7]. If you got an error because your network is not DAG, please remove some papers in your .bib file.
+2. If your Chrome driver doesn't work, please confirm you are using the correct driver version.
+3. If the graph doesn't look good, you may want to change figsize and rerun the "last 3 lines only" to save time
+4. Or you may re-run starting from the line "posi={}"
 
 -----------------------------------------
 
@@ -44,3 +49,4 @@ Enjoy.
 [4]: https://ui.adsabs.harvard.edu/
 [5]: https://raw.githubusercontent.com/lanstonchu/citation-graph/master/Mendeley.png
 [6]: https://chromedriver.chromium.org/downloads
+[7]: https://en.wikipedia.org/wiki/Directed_acyclic_graph
