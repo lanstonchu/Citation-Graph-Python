@@ -27,7 +27,7 @@ This Python tool will automatically generate a citation graph of a given set of 
 
 -----------------------------------------
 
-(Details)
+**Details:**
 
 In certain fields of academic studies (e.g. Deep Learning), academic papers are released in a much faster speed than people in the field read them (although it is certainly true in all fields). As researchers, we know that we want to know how the papers fit into the whole academic conversation, so it would be nice if we can automatically generate an academic paper citation graph, and immediately tell which one cites which.
 
