@@ -6,11 +6,15 @@ Source Code and Data: [Original Wolfram Language version][2] and [Python version
 
 This Python tool will automatically generate a citation graph of a given set of papers. This is a Python version of a similar tool that I previously created in Wolfram Language.
 
+---------------------------
+
 **Procedures:**
 
 1. Download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository is for Chrome version 77 only)
 2. Select papers from your references management software (e.g. Mendeley) and export to .bib file.
 3. Run **Citation_Tree.py** to draw citation graph
+
+---------------------------
 
 **Notes:**
 
@@ -19,6 +23,7 @@ This Python tool will automatically generate a citation graph of a given set of 
 3. If the graph doesn't look good, you may want to change figsize and rerun the "last 3 lines only" to save time
 4. Or you may re-run starting from the line "posi={}"
 5. In my code, I set the desired distance between vertices to be 0.7, and I will loop through all vertices for 1.4*x times, where x is the number of vertices. You may want to adjust these parameters according to your own requirement in graph quality and run time.
+6. Some references quoted by the paper may not be contained in the database (i.e. [Astrophysics Data System of Harvard][4]), but basically it's fine. And in some rare cases, the number of references of a specific paper may exceed 25 in the database, and in those case my program will only extract the first 25 references.
 
 -----------------------------------------
 
