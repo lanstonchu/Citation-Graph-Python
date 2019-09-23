@@ -2,7 +2,7 @@
 
 This Python tool will automatically generate citation graph of a given set of papers. This is a Python version of a similar tool that I previously created in Wolfram Language.
 
-Source Code and Data: [Wolfram Language version][2] and [Python version][3]
+Source Code and Data: [Original Wolfram Language version][2] and [Python version][3]
 
 1. download Chrome Driver at https://chromedriver.chromium.org/downloads with respect to your Chrome version (the current version in My Github repository is for Chrome version 77 only)
 2. Select papers from your references management software (e.g. Mendeley) and export to .bib file.
