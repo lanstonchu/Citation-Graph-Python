@@ -1,0 +1,438 @@
+@article{Yan2018,
+abstract = {Despite the efficacy on a variety of computer vision tasks, deep neural networks (DNNs) are vulnerable to adversarial attacks, limiting their applications in security-critical systems. Recent works have shown the possibility of generating imperceptibly perturbed image inputs (a.k.a., adversarial examples) to fool well-trained DNN classifiers into making arbitrary predictions. To address this problem, we propose a training recipe named "deep defense". Our core idea is to integrate an adversarial perturbation-based regularizer into the classification objective, such that the obtained models learn to resist potential attacks, directly and precisely. The whole optimization problem is solved just like training a recursive network. Experimental results demonstrate that our method outperforms training with adversarial/Parseval regularizations by large margins on various datasets (including MNIST, CIFAR-10 and ImageNet) and different DNN architectures. Code and models for reproducing our results are available at https://github.com/ZiangYan/deepdefense.pytorch},
+annote = {seperate c and d for robustness/accuracy training objectives?},
+archivePrefix = {arXiv},
+arxivId = {1803.00404},
+author = {Yan, Ziang and Guo, Yiwen and Zhang, Changshui},
+eprint = {1803.00404},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Yan, Guo, Zhang - 2018 - Deep Defense Training DNNs with Improved Adversarial Robustness.pdf:pdf},
+number = {NeurIPS},
+title = {{Deep Defense: Training DNNs with Improved Adversarial Robustness}},
+url = {http://arxiv.org/abs/1803.00404},
+year = {2018}
+}
+@article{Guo2018,
+abstract = {Deep neural networks (DNNs) are computationally/memory-intensive and vulnerable to adversarial attacks, making them prohibitive in some real-world applications. By converting dense models into sparse ones, pruning appears to be a promising solution to reducing the computation/memory cost. This paper studies classification models, especially DNN-based ones, to demonstrate that there exists intrinsic relationships between their sparsity and adversarial robustness. Our analyses reveal, both theoretically and empirically, that nonlinear DNN-based classifiers behave differently under {\$}l{\_}2{\$} attacks from some linear ones. We further demonstrate that an appropriately higher model sparsity implies better robustness of nonlinear DNNs, whereas over-sparsified models can be more difficult to resist adversarial examples.},
+annote = {why the two r are defined like that?
+higher r -{\textgreater} more robust
+
+higher sparsity -{\textgreater} higher robustness (but will return if too sparse)
+linear model with l{\_}inf: higher sparsity -{\textgreater} higher robustness
+DNN: higher sparsity -{\textgreater} higher robustness
+
+90{\%} connections can be prunched},
+archivePrefix = {arXiv},
+arxivId = {1810.09619},
+author = {Guo, Yiwen and Zhang, Chao and Zhang, Changshui and Chen, Yurong},
+eprint = {1810.09619},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Guo et al. - 2018 - Sparse DNNs with Improved Adversarial Robustness.pdf:pdf},
+number = {NeurIPS},
+pages = {1--10},
+title = {{Sparse DNNs with Improved Adversarial Robustness}},
+url = {http://arxiv.org/abs/1810.09619},
+year = {2018}
+}
+@article{Pang2017,
+abstract = {Although the recent progress is substantial, deep learning methods can be vulnerable to the maliciously generated adversarial examples. In this paper, we present a novel training procedure and a thresholding test strategy, towards robust detection of adversarial examples. In training, we propose to minimize the reverse cross-entropy (RCE), which encourages a deep network to learn latent representations that better distinguish adversarial examples from normal ones. In testing, we propose to use a thresholding strategy as the detector to filter out adversarial examples for reliable predictions. Our method is simple to implement using standard algorithms, with little extra training cost compared to the common cross-entropy minimization. We apply our method to defend various attacking methods on the widely used MNIST and CIFAR-10 datasets, and achieve significant improvements on robust predictions under all the threat models in the adversarial setting.},
+archivePrefix = {arXiv},
+arxivId = {1706.00633},
+author = {Pang, Tianyu and Du, Chao and Dong, Yinpeng and Zhu, Jun},
+eprint = {1706.00633},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Pang et al. - 2017 - Towards Robust Detection of Adversarial Examples.pdf:pdf},
+number = {NeurIPS},
+title = {{Towards Robust Detection of Adversarial Examples}},
+url = {http://arxiv.org/abs/1706.00633},
+year = {2017}
+}
+@article{Papernot2016,
+abstract = {Advances in machine learning (ML) in recent years have enabled a dizzying array of applications such as data analytics, autonomous systems, and security diagnostics. ML is now pervasive---new systems and models are being deployed in every domain imaginable, leading to rapid and widespread deployment of software based inference and decision making. There is growing recognition that ML exposes new vulnerabilities in software systems, yet the technical community's understanding of the nature and extent of these vulnerabilities remains limited. We systematize recent findings on ML security and privacy, focusing on attacks identified on these systems and defenses crafted to date. We articulate a comprehensive threat model for ML, and categorize attacks and defenses within an adversarial framework. Key insights resulting from works both in the ML and security communities are identified and the effectiveness of approaches are related to structural elements of ML algorithms and the data used to train them. We conclude by formally exploring the opposing relationship between model accuracy and resilience to adversarial manipulation. Through these explorations, we show that there are (possibly unavoidable) tensions between model complexity, accuracy, and resilience that must be calibrated for the environments in which they will be used.},
+archivePrefix = {arXiv},
+arxivId = {1611.03814},
+author = {Papernot, Nicolas and McDaniel, Patrick and Sinha, Arunesh and Wellman, Michael},
+eprint = {1611.03814},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Papernot et al. - 2016 - Towards the Science of Security and Privacy in Machine Learning.pdf:pdf},
+keywords = {Defense},
+mendeley-tags = {Defense},
+pages = {1--19},
+title = {{Towards the Science of Security and Privacy in Machine Learning}},
+url = {http://arxiv.org/abs/1611.03814},
+year = {2016}
+}
+@article{Ma2018,
+abstract = {Deep Neural Networks (DNNs) have recently been shown to be vulnerable against adversarial examples, which are carefully crafted instances that can mislead DNNs to make errors during prediction. To better understand such attacks, a characterization is needed of the properties of regions (the so-called 'adversarial subspaces') in which adversarial examples lie. We tackle this challenge by characterizing the dimensional properties of adversarial regions, via the use of Local Intrinsic Dimensionality (LID). LID assesses the space-filling capability of the region surrounding a reference example, based on the distance distribution of the example to its neighbors. We first provide explanations about how adversarial perturbation can affect the LID characteristic of adversarial regions, and then show empirically that LID characteristics can facilitate the distinction of adversarial examples generated using state-of-the-art attacks. As a proof-of-concept, we show that a potential application of LID is to distinguish adversarial examples, and the preliminary results show that it can outperform several state-of-the-art detection measures by large margins for five attack strategies considered in this paper across three benchmark datasets. Our analysis of the LID characteristic for adversarial regions not only motivates new directions of effective adversarial defense, but also opens up more challenges for developing new attacks to better understand the vulnerabilities of DNNs.},
+annote = {LID},
+archivePrefix = {arXiv},
+arxivId = {1801.02613},
+author = {Ma, Xingjun and Li, Bo and Wang, Yisen and Erfani, Sarah M. and Wijewickrema, Sudanthi and Schoenebeck, Grant and Song, Dawn and Houle, Michael E. and Bailey, James},
+eprint = {1801.02613},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Ma et al. - 2018 - Characterizing Adversarial Subspaces Using Local Intrinsic Dimensionality.pdf:pdf},
+keywords = {Defense,LID},
+mendeley-tags = {Defense,LID},
+pages = {1--15},
+title = {{Characterizing Adversarial Subspaces Using Local Intrinsic Dimensionality}},
+url = {http://arxiv.org/abs/1801.02613},
+year = {2018}
+}
+@article{Wang2018,
+abstract = {Knowledge distillation (KD) aims to train a lightweight classifier suitable to provide accurate inference with constrained resources in multi-label learning. Instead of directly consuming feature-label pairs, the classifier is trained by a teacher, i.e., a high-capacity model whose training may be resource-hungry. The accuracy of the classifier trained this way is usually suboptimal because it is difficult to learn the true data distribution from the teacher. An alternative method is to adversarially train the classifier against a discriminator in a two-player game akin to generative adversarial networks (GAN), which can ensure the classifier to learn the true data distribution at the equilibrium of this game. However, it may take excessively long time for such a two-player game to reach equilibrium due to high-variance gradient updates. To address these limitations, we propose a three-player game named KDGAN consisting of a classifier, a teacher, and a discriminator. The classifier and the teacher learn from each other via distillation losses and are adversarially trained against the discriminator via adversarial losses. By simultaneously optimizing the distillation and adversarial losses, the classifier will learn the true data distribution at the equilibrium. We approximate the discrete distribution learned by the classifier (or the teacher) with a concrete distribution. From the concrete distribution, we generate continuous samples to obtain low-variance gradient updates, which speed up the training. Extensive experiments using real datasets confirm the superiority of KDGAN in both accuracy and training speed.},
+author = {Wang, Xiaojie and Zhang, Rui and Sun, Yu and Qi, Jianzhong},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Wang et al. - 2018 - KDGAN Knowledge Distillation with Generative Adversarial Networks.pdf:pdf},
+journal = {NeurIPS},
+keywords = {Defense,Distillation},
+mendeley-tags = {Defense,Distillation},
+number = {NeurIPS},
+pages = {1--17},
+title = {{KDGAN: Knowledge Distillation with Generative Adversarial Networks}},
+year = {2018}
+}
+@techreport{Chen2019,
+abstract = {Given the ability to directly manipulate image pixels in the digital input space, an adversary can easily generate imperceptible perturbations to fool a Deep Neural Network (DNN) image classifier, as demonstrated in prior work. In this work, we propose ShapeShifter, an attack that tackles the more challenging problem of crafting physical adversarial perturbations to fool image-based object detectors like Faster R-CNN. Attacking an object detector is more difficult than attacking an image classifier, as it needs to mislead the classification results in multiple bounding boxes with different scales. Extending the digital attack to the physical world adds another layer of difficulty, because it requires the perturbation to be robust enough to survive real-world distortions due to different viewing distances and angles, lighting conditions, and camera limitations. We show that the Expectation over Transformation technique, which was originally proposed to enhance the robustness of adversarial perturbations in image classification, can be successfully adapted to the object detection setting. ShapeShifter can generate adversarially perturbed stop signs that are consistently mis-detected by Faster R-CNN as other objects, posing a potential threat to autonomous vehicles and other safety-critical computer vision systems.},
+annote = {attack faster R-CNN (in the video it tries to attack YOLO as well)
+
+it's a white box attack because we have the rpn() function?
+
+it seems to be the first paper to attack object detector?
+attack success rate of this paper is not high},
+archivePrefix = {arXiv},
+arxivId = {1804.05810v3},
+author = {Chen, Shang-Tse and Cornelius, Cory and Martin, Jason and {Horng Chau}, Duen},
+eprint = {1804.05810v3},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Chen et al. - Unknown - ShapeShifter Robust Physical Adversarial Attack on Faster R-CNN Object Detector(2).pdf:pdf},
+keywords = {Adversarial attack {\textperiodcentered},Attack,Faster R-CNN,Object Detection,Object detection {\textperiodcentered},Phy Rbt Adv Expl,ShapeShifter},
+mendeley-tags = {Attack,Object Detection,Phy Rbt Adv Expl,ShapeShifter},
+title = {{ShapeShifter: Robust Physical Adversarial Attack on Faster R-CNN Object Detector}},
+url = {https://github.com/shangtse/robust-physical-attack},
+year = {2019}
+}
+@techreport{Athalye2018,
+abstract = {Standard methods for generating adversarial examples for neural networks do not consistently fool neural network classifiers in the physical world due to a combination of viewpoint shifts, camera noise, and other natural transformations, limiting their relevance to real-world systems. We demonstrate the existence of robust 3D adversar-ial objects, and we present the first algorithm for synthesizing examples that are adversarial over a chosen distribution of transformations. We synthesize two-dimensional adversarial images that are robust to noise, distortion, and affine transformation. We apply our algorithm to complex three-dimensional objects, using 3D-printing to manufacture the first physical adversarial objects. Our results demonstrate the existence of 3D ad-versarial objects in the physical world.},
+annote = {transformation t(x)},
+archivePrefix = {arXiv},
+arxivId = {1707.07397v3},
+author = {Athalye, Anish and Engstrom, Logan and Ilyas, Andrew and Kwok, Kevin},
+eprint = {1707.07397v3},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Athalye et al. - 2018 - Synthesizing Robust Adversarial Examples.pdf:pdf},
+keywords = {Attack,Phy Rbt Adv Expl},
+mendeley-tags = {Attack,Phy Rbt Adv Expl},
+title = {{Synthesizing Robust Adversarial Examples}},
+url = {https://youtu.be/YXy6oX1iNoA},
+year = {2018}
+}
+@techreport{Brown2018,
+abstract = {We present a method to create universal, robust, targeted adversarial image patches in the real world. The patches are universal because they can be used to attack any scene, robust because they work under a wide variety of transformations, and targeted because they can cause a classifier to output any target class. These adversarial patches can be printed, added to any scene, photographed, and presented to image classifiers; even when the patches are small, they cause the classifiers to ignore the other items in the scene and report a chosen target class.},
+annote = {perturbation of this paper is NOT subject to imperceptible attack
+
+see also : Synthesizing Robust Adversarial Examples},
+archivePrefix = {arXiv},
+arxivId = {1712.09665v2},
+author = {Brown, Tom B and Man{\'{e}}, Dandelion and Roy, Aurko and Abadi, Mart{\'{i}}n and Gilmer, Justin},
+eprint = {1712.09665v2},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Brown et al. - Unknown - Adversarial Patch(2).pdf:pdf},
+keywords = {Attack,Phy Rbt Adv Expl},
+mendeley-tags = {Attack,Phy Rbt Adv Expl},
+title = {{Adversarial Patch}},
+url = {https://youtu.be/i1sp4X57TL4},
+year = {2018}
+}
+@techreport{Hu2017,
+abstract = {Machine learning has been used to detect new malware in recent years, while malware authors have strong motivation to attack such algorithms .Malware authors usually have no access to the detailed structures and parameters of the machine learning models used by malware detection systems, and therefore they can only perform black-box attacks. This paper proposes a generative adversarial network (GAN) based algorithm named MalGAN to generate adversarial malware examples , which are able to bypass black-box machine learning based detection models. MalGAN uses a substitute detector to fit the black-box malware detection system. A generative network is trained to minimize the generated adversarial examples' malicious probabilities predicted by the substitute detector. The superiority of MalGAN over traditional gradient based adversarial example generation algorithms is that MalGAN is able to decrease the detection rate to nearly zero and make the retraining based defensive method against adversarial examples hard to work.},
+annote = {figure 1 and algorithm 1
+
+Original GAN: white box D
+MalGUN: black box D},
+archivePrefix = {arXiv},
+arxivId = {1702.05983v1},
+author = {Hu, Weiwei and Tan, Ying},
+eprint = {1702.05983v1},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Hu, Tan - Unknown - Generating Adversarial Malware Examples for Black-Box Attacks Based on GAN.pdf:pdf},
+keywords = {Attack,GAN,MalGAN,Malware},
+mendeley-tags = {Attack,GAN,MalGAN,Malware},
+title = {{Generating Adversarial Malware Examples for Black-Box Attacks Based on GAN}},
+year = {2017}
+}
+@techreport{Goodfellow2014,
+abstract = {We propose a new framework for estimating generative models via an adversar-ial process, in which we simultaneously train two models: a generative model G that captures the data distribution, and a discriminative model D that estimates the probability that a sample came from the training data rather than G. The training procedure for G is to maximize the probability of D making a mistake. This framework corresponds to a minimax two-player game. In the space of arbitrary functions G and D, a unique solution exists, with G recovering the training data distribution and D equal to 1 2 everywhere. In the case where G and D are defined by multilayer perceptrons, the entire system can be trained with backpropagation. There is no need for any Markov chains or unrolled approximate inference networks during either training or generation of samples. Experiments demonstrate the potential of the framework through qualitative and quantitative evaluation of the generated samples.},
+annote = {soul: Algorithm 1
+
+update discriminator in the inside loop
+update generator in the inside loop
+
+JS divergence is used for distance between distribution.
+
+discriminator shouldn't be trained to well at the beginning to avoid 0-gradient. to solve this, use the "- log D trick"},
+archivePrefix = {arXiv},
+arxivId = {1406.2661v1},
+author = {Goodfellow, Ian J and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+eprint = {1406.2661v1},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Goodfellow et al. - Unknown - Generative Adversarial Nets.pdf:pdf},
+keywords = {GAN},
+mendeley-tags = {GAN},
+title = {{Generative Adversarial Nets}},
+url = {http://www.github.com/goodfeli/adversarial https://mc.ai/機器學習-ml-notegenerative-adversarial-network-gan-生成對抗網路/},
+year = {2014}
+}
+@techreport{He,
+abstract = {Existing deep convolutional neural networks (CNNs) require a fixed-size (e.g., 224×224) input image. This requirement is "artificial" and may reduce the recognition accuracy for the images or sub-images of an arbitrary size/scale. In this work, we equip the networks with another pooling strategy, "spatial pyramid pooling", to eliminate the above requirement. The new network structure, called SPP-net, can generate a fixed-length representation regardless of image size/scale. Pyramid pooling is also robust to object deformations. With these advantages, SPP-net should in general improve all CNN-based image classification methods. On the ImageNet 2012 dataset, we demonstrate that SPP-net boosts the accuracy of a variety of CNN architectures despite their different designs. On the Pascal VOC 2007 and Caltech101 datasets, SPP-net achieves state-of-the-art classification results using a single full-image representation and no fine-tuning. The power of SPP-net is also significant in object detection. Using SPP-net, we compute the feature maps from the entire image only once, and then pool features in arbitrary regions (sub-images) to generate fixed-length representations for training the detectors. This method avoids repeatedly computing the convolutional features. In processing test images, our method is 24-102× faster than the R-CNN method, while achieving better or comparable accuracy on Pascal VOC 2007. In ImageNet Large Scale Visual Recognition Challenge (ILSVRC) 2014, our methods rank {\#}2 in object detection and {\#}3 in image classification among all 38 teams. This manuscript also introduces the improvement made for this competition.},
+annote = {SPPNet; RoI Pooling
+
+Fast R-CNN = R-CNN + RoI Pooling + some fix
+
+RoI Pooling layer is a simplifed version of SPPNet
+
+SPPNet use 4x4+2x2+1x1, while RoI Pooling only use 7x7
+
+allow 2D input of varying size, output a fixed size vector for the subsequent FC layers
+
+no training is needed since pooling layers don't have parameters!},
+archivePrefix = {arXiv},
+arxivId = {1406.4729v4},
+author = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+eprint = {1406.4729v4},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/He et al. - Unknown - Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition.pdf:pdf},
+keywords = {Image Classification,Index Terms-Convolutional Neural Networks,Object Detection,Object Detection !,RoI Pooling,SPPNet,Spatial Pyramid Pooling},
+mendeley-tags = {Object Detection,RoI Pooling,SPPNet},
+title = {{Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition}},
+url = {http://research.microsoft.com/en-us/um/people/kahe/}
+}
+@techreport{Ren,
+abstract = {State-of-the-art object detection networks depend on region proposal algorithms to hypothesize object locations. Advances like SPPnet [1] and Fast R-CNN [2] have reduced the running time of these detection networks, exposing region proposal computation as a bottleneck. In this work, we introduce a Region Proposal Network (RPN) that shares full-image convolutional features with the detection network, thus enabling nearly cost-free region proposals. An RPN is a fully convolutional network that simultaneously predicts object bounds and objectness scores at each position. The RPN is trained end-to-end to generate high-quality region proposals, which are used by Fast R-CNN for detection. We further merge RPN and Fast R-CNN into a single network by sharing their convolutional features-using the recently popular terminology of neural networks with "attention" mechanisms, the RPN component tells the unified network where to look. For the very deep VGG-16 model [3], our detection system has a frame rate of 5fps (including all steps) on a GPU, while achieving state-of-the-art object detection accuracy on PASCAL VOC 2007, 2012, and MS COCO datasets with only 300 proposals per image. In ILSVRC and COCO 2015 competitions, Faster R-CNN and RPN are the foundations of the 1st-place winning entries in several tracks. Code has been made publicly available.},
+annote = {Figure 2
+
+R-CNN -{\textgreater} Fast R-CNN -{\textgreater} Faster R-CNN
+
+Fast R-CNN = R-CNN + RoI Pooling + some fix
+Faster R-CNN = RPN + Fast R-CNN + some fix
+
+RoI Pooling is a simplied version (7x7 only) of SPPNet (see [2])},
+archivePrefix = {arXiv},
+arxivId = {1506.01497v3},
+author = {Ren, Shaoqing and He, Kaiming and Girshick, Ross and Sun, Jian},
+eprint = {1506.01497v3},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Ren et al. - Unknown - Faster R-CNN Towards Real-Time Object Detection with Region Proposal Networks.pdf:pdf},
+keywords = {Convolutional Neural Network !,Faster R-CNN,Index Terms-Object Detection,Object Detection,Region Proposal,Region Proposal Network,RoI Pooling},
+mendeley-tags = {Faster R-CNN,Object Detection,Region Proposal Network,RoI Pooling},
+title = {{Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks}},
+url = {http://image-net.org/challenges/LSVRC/2015/results https://www.mathworks.com/help/vision/ug/faster-r-cnn-basics.html{\#}mw{\_}cfbce1ef-74b2-46dd-814f-a0f985c96301}
+}
+@techreport{ShenICT2017,
+abstract = {Although neural networks could achieve state-of-the-art performance while recongnizing images, they often suffer a tremendous defeat from adversarial examples-inputs generated by utilizing imperceptible but intentional perturbation to clean samples from the datasets. How to defense against adversarial examples is an important problem which is well worth researching. So far, very few methods have provided a significant defense to adversar-ial examples. In this paper, a novel idea is proposed and an effective framework based Generative Adversarial Nets named APE-GAN is implemented to defense against the adversarial examples. The experimental results on three benchmark datasets including MNIST, CIFAR10 and Im-ageNet indicate that APE-GAN is effective to resist ad-versarial examples generated from five attacks.},
+annote = {soul: figure 2
+
+use DCGAN
+add the term l{\_}mse for G
+
+want to training G such that:
+x{\_}adv --G--{\textgreater} x{\_}out' {\~{}} P{\_}data},
+archivePrefix = {arXiv},
+arxivId = {1707.05474v3},
+author = {{Shen ICT}, Shiwei and {Jin ICT}, Guoqing and {Gao ICT}, Ke and {Zhang ICT}, Yongdong},
+eprint = {1707.05474v3},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Shen ICT et al. - Unknown - APE-GAN Adversarial Perturbation Elimination with GAN.pdf:pdf},
+keywords = {Defense,GAN},
+mendeley-tags = {Defense,GAN},
+title = {{APE-GAN: Adversarial Perturbation Elimination with GAN}},
+url = {https://github.com/},
+year = {2017}
+}
+@techreport{Xie2018,
+abstract = {Convolutional neural networks have demonstrated high accuracy on various tasks in recent years. However, they are extremely vulnerable to adversarial examples. For example, imperceptible perturbations added to clean images can cause convo-lutional neural networks to fail. In this paper, we propose to utilize randomization at inference time to mitigate adversarial effects. Specifically, we use two random-ization operations: random resizing, which resizes the input images to a random size, and random padding, which pads zeros around the input images in a random manner. Extensive experiments demonstrate that the proposed randomiza-tion method is very effective at defending against both single-step and iterative attacks. Our method provides the following advantages: 1) no additional training or fine-tuning, 2) very few additional computations, 3) compatible with other adver-sarial defense methods. By combining the proposed randomization method with an adversarially trained model, it achieves a normalized score of 0.924 (ranked No.2 among 107 defense teams) in the NIPS 2017 adversarial examples defense challenge, which is far better than using adversarial training alone with a normalized score of 0.773 (ranked No.56). The code is public available at https: //github.com/cihangxie/NIPS2017{\_}adv{\_}challenge{\_}defense.},
+annote = {randomization
+
+randomization on resize and padding
+
+3 types of attack:-
+Vanilla vs. Single-Pattern vs. Ensemble-Pattern},
+archivePrefix = {arXiv},
+arxivId = {1711.01991v3},
+author = {Xie, Cihang and Zhang, Zhishuai and Yuille, Alan L and Wang, Jianyu and Ren, Zhou},
+eprint = {1711.01991v3},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Xie et al. - Unknown - MITIGATING ADVERSARIAL EFFECTS THROUGH RAN-DOMIZATION(2).pdf:pdf},
+keywords = {Defense,Randomization},
+mendeley-tags = {Defense,Randomization},
+title = {{MITIGATING ADVERSARIAL EFFECTS THROUGH RAN-DOMIZATION}},
+year = {2018}
+}
+@article{Carlini2017,
+abstract = {Neural networks provide state-of-the-art results for most machine learning tasks. Unfortunately, neural networks are vulnerable to adversarial examples: given an input {\$}x{\$} and any target classification {\$}t{\$}, it is possible to find a new input {\$}x'{\$} that is similar to {\$}x{\$} but classified as {\$}t{\$}. This makes it difficult to apply neural networks in security-critical areas. Defensive distillation is a recently proposed approach that can take an arbitrary neural network, and increase its robustness, reducing the success rate of current attacks' ability to find adversarial examples from {\$}95\backslash{\%}{\$} to {\$}0.5\backslash{\%}{\$}. In this paper, we demonstrate that defensive distillation does not significantly increase the robustness of neural networks by introducing three new attack algorithms that are successful on both distilled and undistilled neural networks with {\$}100\backslash{\%}{\$} probability. Our attacks are tailored to three distance metrics used previously in the literature, and when compared to previous adversarial example generation algorithms, our attacks are often much more effective (and never worse). Furthermore, we propose using high-confidence adversarial examples in a simple transferability test we show can also be used to break defensive distillation. We hope our attacks will be used as a benchmark in future defense attempts to create neural networks that resist adversarial examples.},
+annote = {C{\&}W attack method, against distillation
+
+optimization based. formulation see P.9
+c is a pre-selected constant
+
+7 choice of f (the best = f{\_}6)
+3 choice of box method (the best = method{\_}3 = COV)},
+archivePrefix = {arXiv},
+arxivId = {arXiv:1608.04644v2},
+author = {Carlini, Nicholas and Wagner, David},
+doi = {10.1109/SP.2017.49},
+eprint = {arXiv:1608.04644v2},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Carlini, Wagner - 2017 - Towards Evaluating the Robustness of Neural Networks.pdf:pdf},
+isbn = {9781509055326},
+issn = {10816011},
+journal = {Proceedings - IEEE Symposium on Security and Privacy},
+keywords = {Attack,C{\&}W},
+mendeley-tags = {Attack,C{\&}W},
+pages = {39--57},
+title = {{Towards Evaluating the Robustness of Neural Networks}},
+url = {https://zhuanlan.zhihu.com/p/39285664},
+year = {2017}
+}
+@techreport{Zheng2016,
+abstract = {In this paper we address the issue of output instability of deep neural networks: small perturbations in the visual input can significantly distort the feature embeddings and output of a neural network. Such instability affects many deep architectures with state-of-the-art performance on a wide range of computer vision tasks. We present a general stability training method to stabilize deep networks against small input distortions that result from various types of common image processing, such as compression, rescaling, and cropping. We validate our method by stabilizing the state-of-the-art Inception architecture [11] against these types of distortions. In addition, we demonstrate that our stabilized model gives robust state-of-the-art performance on large-scale near-duplicate detection, similar-image ranking, and classification on noisy datasets.},
+annote = {training against perturbation due to natural process (not premeditated attackers)
+
+$\epsilon${\~{}}Gaussian
+x'=x+$\epsilon$
+
+natural process:
+1. JPEG-q
+2. Thumb-A
+3. Random cropping},
+archivePrefix = {arXiv},
+arxivId = {1604.04326v1},
+author = {Zheng, Stephan and Song, Yang and Leung, Thomas and Goodfellow, Ian},
+eprint = {1604.04326v1},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Zheng Google et al. - Unknown - Improving the Robustness of Deep Neural Networks via Stability Training(2).pdf:pdf},
+isbn = {1604.04326v1},
+keywords = {Data Augmentation,Defense,Stability Training},
+mendeley-tags = {Data Augmentation,Defense,Stability Training},
+title = {{Improving the Robustness of Deep Neural Networks via Stability Training}},
+year = {2016}
+}
+@techreport{Moosavi-Dezfooli2017,
+abstract = {Given a state-of-the-art deep neural network classifier, we show the existence of a universal (image-agnostic) and very small perturbation vector that causes natural images to be misclassified with high probability. We propose a systematic algorithm for computing universal perturbations, and show that state-of-the-art deep neural networks are highly vulnerable to such perturbations, albeit being quasi-imperceptible to the human eye. We further empirically analyze these universal perturbations and show, in particular, that they generalize very well across neural networks. The surprising existence of universal perturbations reveals important geometric correlations among the high-dimensional decision boundary of classifiers. It further outlines potential security breaches with the existence of single directions in the input space that adversaries can possibly exploit to break a classifier on most natural images. 1},
+annote = {a universal perturbation r independent of x,
+i.e. r(x) = r},
+author = {Moosavi-Dezfooli, Seyed-Mohsen and Fawzi, Alhussein and Fawzi, Omar and Frossard, Pascal},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Moosavi-Dezfooli et al. - Unknown - Universal adversarial perturbations.pdf:pdf},
+keywords = {Attack,Universal adv ptb},
+mendeley-tags = {Attack,Universal adv ptb},
+title = {{Universal adversarial perturbations}},
+url = {https://github.com/},
+year = {2017}
+}
+@techreport{Moosavi-Dezfooli2015,
+abstract = {State-of-the-art deep neural networks have achieved impressive results on many image classification tasks. However , these same architectures have been shown to be unstable to small, well sought, perturbations of the images. Despite the importance of this phenomenon, no effective methods have been proposed to accurately compute the ro-bustness of state-of-the-art deep classifiers to such perturbations on large-scale datasets. In this paper, we fill this gap and propose the DeepFool algorithm to efficiently compute perturbations that fool deep networks, and thus reliably quantify the robustness of these classifiers. Extensive experimental results show that our approach outperforms recent methods in the task of computing adversarial perturbations and making classifiers more robust. 1},
+annote = {x{\_}{\{}i+1{\}} = x{\_}i - f(x{\_}i) ∇f(x{\_}i)/||∇f(x{\_}i)||{\^{}}2{\_}2 for 2 class problem},
+archivePrefix = {arXiv},
+arxivId = {1511.04599v3},
+author = {Moosavi-Dezfooli, Seyed-Mohsen and Fawzi, Alhussein and Frossard´, Pascal Frossard{\'{e}}cole and Polytechnique, Frossard{\'{e}}cole and {De Lausanne}, F{\'{e}}d{\'{e}}rale},
+eprint = {1511.04599v3},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Moosavi-Dezfooli et al. - Unknown - DeepFool a simple and accurate method to fool deep neural networks(2).pdf:pdf},
+keywords = {Attack,DeepFool},
+mendeley-tags = {Attack,DeepFool},
+title = {{DeepFool: a simple and accurate method to fool deep neural networks}},
+url = {http://github.com/lts4/deepfool},
+year = {2015}
+}
+@techreport{Papernot2016a,
+abstract = {Deep learning algorithms have been shown to perform extremely well on many classical machine learning problems. However, recent studies have shown that deep learning, like other machine learning techniques, is vulnerable to adver-sarial samples: inputs crafted to force a deep neural network (DNN) to provide adversary-selected outputs. Such attacks can seriously undermine the security of the system supported by the DNN, sometimes with devastating consequences. For example, autonomous vehicles can be crashed, illicit or illegal content can bypass content filters, or biometric authentication systems can be manipulated to allow improper access. In this work, we introduce a defensive mechanism called defensive distillation to reduce the effectiveness of adversarial samples on DNNs. We analytically investigate the generalizability and robustness properties granted by the use of defensive distillation when training DNNs. We also empirically study the effectiveness of our defense mechanisms on two DNNs placed in adversarial settings. The study shows that defensive distillation can reduce effectiveness of sample creation from 95{\%} to less than 0.5{\%} on a studied DNN. Such dramatic gains can be explained by the fact that distillation leads gradients used in adversarial sample creation to be reduced by a factor of 10 30. We also find that distillation increases the average minimum number of features that need to be modified to create adversarial samples by about 800{\%} on one of the DNNs we tested.},
+annote = {C{\&}W can beat distillation.
+
+See figure 5.
+
+higher T -{\textgreater} lower gradient (see P. 9) -{\textgreater} smoother decision boundary -{\textgreater} more robust (see P. 13)
+
+it is a static defense method (i.e. can't adapt to the new attack types)},
+archivePrefix = {arXiv},
+arxivId = {1511.04508v2},
+author = {Papernot, Nicolas and Mcdaniel, Patrick and Wu, Xi and Jha, Somesh and Swami, Ananthram},
+eprint = {1511.04508v2},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Papernot et al. - Unknown - Distillation as a Defense to Adversarial Perturbations against Deep Neural Networks(2).pdf:pdf},
+keywords = {Defense,Distillation},
+mendeley-tags = {Defense,Distillation},
+pages = {16},
+title = {{Distillation as a Defense to Adversarial Perturbations against Deep Neural Networks}},
+url = {https://zhuanlan.zhihu.com/p/31177892},
+year = {2016}
+}
+@techreport{Liao2018,
+abstract = {Neural networks are vulnerable to adversarial examples, which poses a threat to their application in security sensitive systems. We propose high-level representation guided denoiser (HGD) as a defense for image classification. Standard denoiser suffers from the error amplification effect, in which small residual adversarial noise is progressively amplified and leads to wrong classifications. HGD overcomes this problem by using a loss function defined as the difference between the target model's outputs activated by the clean image and denoised image. Compared with ensemble adversarial training which is the state-of-the-art defending method on large images, HGD has three advantages. First, with HGD as a defense, the target model is more robust to either white-box or black-box adversarial attacks. Second, HGD can be trained on a small subset of the images and generalizes well to other images and unseen classes. Third, HGD can be transferred to defend models other than the one guiding it. In NIPS competition on defense against ad-versarial attacks, our HGD solution won the first place and outperformed other models by a large margin. 1},
+annote = {denoising
+
+PGD vs. HGD vs. CGD
+PGD: pixel guided denoiser
+HGD: "high-level representation guided de- noiser"
+CGD: class label guided denoiser
+
+PAD: 
+Denoising Autoencoder (DAE) vs. Denoising Additive U-Net (DUNET)
+
+HDG (use the U-Net of DUNET):
+FGD vs.
+LGD},
+archivePrefix = {arXiv},
+arxivId = {1712.02976v2},
+author = {Liao, Fangzhou and Liang, Ming and Dong, Yinpeng and Pang, Tianyu and Hu, Xiaolin and Zhu, Jun},
+eprint = {1712.02976v2},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Liao et al. - Unknown - Defense against Adversarial Attacks Using High-Level Representation Guided Denoiser.pdf:pdf},
+isbn = {1712.02976v2},
+keywords = {Defense,Denoising},
+mendeley-tags = {Defense,Denoising},
+pages = {10},
+title = {{Defense against Adversarial Attacks Using High-Level Representation Guided Denoiser}},
+url = {https://github.com/lfz/Guided-Denoise},
+year = {2018}
+}
+@article{Weng2018,
+abstract = {The robustness of neural networks to adversarial examples has received great attention due to security implications. Despite various attack approaches to crafting visually imperceptible adversarial examples, little has been developed towards a comprehensive measure of robustness. In this paper, we provide a theoretical justification for converting robustness analysis into a local Lipschitz constant estimation problem, and propose to use the Extreme Value Theory for efficient evaluation. Our analysis yields a novel robustness metric called CLEVER, which is short for Cross Lipschitz Extreme Value for nEtwork Robustness. The proposed CLEVER score is attack-agnostic and computationally feasible for large neural networks. Experimental results on various networks, including ResNet, Inception-v3 and MobileNet, show that (i) CLEVER is aligned with the robustness indication measured by the {\$}\backslashell{\_}2{\$} and {\$}\backslashell{\_}\backslashinfty{\$} norms of adversarial examples from powerful attacks, and (ii) defended networks using defensive distillation or bounded ReLU indeed achieve better CLEVER scores. To the best of our knowledge, CLEVER is the first attack-independent robustness metric that can be applied to any neural network classifier.},
+annote = {define CLEVER score
+
+CLEVER is x{\_}0 specific? but not the case for other robustness indicator?
+
+CLEVER's trend is different to other robustness indicator? can we split the indicator from "distance only" into several main components?},
+archivePrefix = {arXiv},
+arxivId = {1801.10578},
+author = {Weng, Tsui-Wei and Zhang, Huan and Chen, Pin-Yu and Yi, Jinfeng and Su, Dong and Gao, Yupeng and Hsieh, Cho-Jui and Daniel, Luca},
+eprint = {1801.10578},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Weng et al. - 2018 - Evaluating the Robustness of Neural Networks An Extreme Value Theory Approach.pdf:pdf},
+keywords = {CLEVER score},
+mendeley-tags = {CLEVER score},
+pages = {1--18},
+title = {{Evaluating the Robustness of Neural Networks: An Extreme Value Theory Approach}},
+url = {http://arxiv.org/abs/1801.10578},
+year = {2018}
+}
+@article{Tramer2017,
+abstract = {Adversarial examples are maliciously perturbed inputs designed to mislead machine learning (ML) models at test-time. They often transfer: the same adversarial example fools more than one model. In this work, we propose novel methods for estimating the previously unknown dimensionality of the space of adversarial inputs. We find that adversarial examples span a contiguous subspace of large ({\~{}}25) dimensionality. Adversarial subspaces with higher dimensionality are more likely to intersect. We find that for two different models, a significant fraction of their subspaces is shared, thus enabling transferability. In the first quantitative analysis of the similarity of different models' decision boundaries, we show that these boundaries are actually close in arbitrary directions, whether adversarial or benign. We conclude by formally studying the limits of transferability. We derive (1) sufficient conditions on the data distribution that imply transferability for simple model classes and (2) examples of scenarios in which transfer does not occur. These findings indicate that it may be possible to design defenses against transfer-based attacks, even for models that are vulnerable to direct attacks.},
+annote = {Transferability Indicator: INTER-DIST{\_}d
+
+if $\Delta$ of (f, $\Phi$) is big, then agnostic x+r can be transferred to the model f.},
+archivePrefix = {arXiv},
+arxivId = {1704.03453},
+author = {Tram{\`{e}}r, Florian and Papernot, Nicolas and Goodfellow, Ian and Boneh, Dan and McDaniel, Patrick},
+eprint = {1704.03453},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Tram{\`{e}}r et al. - 2017 - The Space of Transferable Adversarial Examples.pdf:pdf},
+keywords = {Transferability Indicator},
+mendeley-tags = {Transferability Indicator},
+pages = {1--15},
+title = {{The Space of Transferable Adversarial Examples}},
+url = {http://arxiv.org/abs/1704.03453},
+year = {2017}
+}
+@article{Papernot2016b,
+abstract = {Many machine learning models are vulnerable to adversarial examples: inputs that are specially crafted to cause a machine learning model to produce an incorrect output. Adversarial examples that affect one model often affect another model, even if the two models have different architectures or were trained on different training sets, so long as both models were trained to perform the same task. An attacker may therefore train their own substitute model, craft adversarial examples against the substitute, and transfer them to a victim model, with very little information about the victim. Recent work has further developed a technique that uses the victim model as an oracle to label a synthetic training set for the substitute, so the attacker need not even collect a training set to mount the attack. We extend these recent techniques using reservoir sampling to greatly enhance the efficiency of the training procedure for the substitute model. We introduce new transferability attacks between previously unexplored (substitute, victim) pairs of machine learning model classes, most notably SVMs and decision trees. We demonstrate our attacks on two commercial machine learning classification systems from Amazon (96.19{\%} misclassification rate) and Google (88.94{\%}) using only 800 queries of the victim model, thereby showing that existing machine learning approaches are in general vulnerable to systematic black-box attacks regardless of their structure.},
+archivePrefix = {arXiv},
+arxivId = {1605.07277},
+author = {Papernot, Nicolas and McDaniel, Patrick and Goodfellow, Ian},
+eprint = {1605.07277},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Papernot, McDaniel, Goodfellow - 2016 - Transferability in Machine Learning from Phenomena to Black-Box Attacks using Adversarial Sample.pdf:pdf},
+title = {{Transferability in Machine Learning: from Phenomena to Black-Box Attacks using Adversarial Samples}},
+url = {http://arxiv.org/abs/1605.07277},
+year = {2016}
+}
+@article{Goodfellow2014a,
+abstract = {Several machine learning models, including neural networks, consistently misclassify adversarial examples---inputs formed by applying small but intentionally worst-case perturbations to examples from the dataset, such that the perturbed input results in the model outputting an incorrect answer with high confidence. Early attempts at explaining this phenomenon focused on nonlinearity and overfitting. We argue instead that the primary cause of neural networks' vulnerability to adversarial perturbation is their linear nature. This explanation is supported by new quantitative results while giving the first explanation of the most intriguing fact about them: their generalization across architectures and training sets. Moreover, this view yields a simple and fast method of generating adversarial examples. Using this approach to provide examples for adversarial training, we reduce the test set error of a maxout network on the MNIST dataset.},
+annote = {Adversarial trainingd},
+archivePrefix = {arXiv},
+arxivId = {1412.6572},
+author = {Goodfellow, Ian J. and Shlens, Jonathon and Szegedy, Christian},
+eprint = {1412.6572},
+file = {:C$\backslash$:/Users/Lanston/Documents/GitHub/MLSP-Courses-UW-Madison/PhD/Reference Papers/1412.6572.pdf:pdf},
+keywords = {Adversarial Training,Defense},
+mendeley-tags = {Adversarial Training,Defense},
+pages = {1--11},
+title = {{Explaining and Harnessing Adversarial Examples}},
+url = {http://arxiv.org/abs/1412.6572},
+year = {2014}
+}

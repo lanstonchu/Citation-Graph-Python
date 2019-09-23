@@ -1,0 +1,59 @@
+@article{Goodfellow2014a,
+abstract = {Several machine learning models, including neural networks, consistently misclassify adversarial examples---inputs formed by applying small but intentionally worst-case perturbations to examples from the dataset, such that the perturbed input results in the model outputting an incorrect answer with high confidence. Early attempts at explaining this phenomenon focused on nonlinearity and overfitting. We argue instead that the primary cause of neural networks' vulnerability to adversarial perturbation is their linear nature. This explanation is supported by new quantitative results while giving the first explanation of the most intriguing fact about them: their generalization across architectures and training sets. Moreover, this view yields a simple and fast method of generating adversarial examples. Using this approach to provide examples for adversarial training, we reduce the test set error of a maxout network on the MNIST dataset.},
+annote = {Adversarial training
+
+adv. transferability due to linearity,
+not due to non-linearity!},
+archivePrefix = {arXiv},
+arxivId = {1412.6572},
+author = {Goodfellow, Ian J. and Shlens, Jonathon and Szegedy, Christian},
+eprint = {1412.6572},
+file = {:C$\backslash$:/Users/Lanston/Documents/GitHub/MLSP-Courses-UW-Madison/PhD/Reference Papers/1412.6572.pdf:pdf},
+keywords = {Adversarial Training,Defense},
+mendeley-tags = {Adversarial Training,Defense},
+pages = {1--11},
+title = {{Explaining and Harnessing Adversarial Examples}},
+url = {http://arxiv.org/abs/1412.6572},
+year = {2014}
+}
+@techreport{Tramer2018,
+abstract = {Adversarial examples are perturbed inputs designed to fool machine learning models. Adversarial training injects such examples into training data to increase ro-bustness. To scale this technique to large datasets, perturbations are crafted using fast single-step methods that maximize a linear approximation of the model's loss. We show that this form of adversarial training converges to a degenerate global minimum, wherein small curvature artifacts near the data points obfuscate a linear approximation of the loss. The model thus learns to generate weak perturbations , rather than defend against strong ones. As a result, we find that adversarial training remains vulnerable to black-box attacks, where we transfer perturbations computed on undefended models, as well as to a powerful novel single-step attack that escapes the non-smooth vicinity of the input data via a small random step. We further introduce Ensemble Adversarial Training, a technique that augments training data with perturbations transferred from other models. On ImageNet, Ensemble Adversarial Training yields models with strong robustness to black-box attacks. In particular, our most robust model won the first round of the NIPS 2017 competition on Defenses against Adversarial Attacks (Kurakin et al., 2017c).},
+annote = {degenerate minimum = type (6) h{\^{}}*},
+archivePrefix = {arXiv},
+arxivId = {1705.07204v4},
+author = {Tram{\`{e}}r, Florian and Kurakin, Alexey and Brain, Google and Papernot, Nicolas and Goodfellow, Ian and Boneh, Dan and Mcdaniel, Patrick},
+eprint = {1705.07204v4},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Tram{\`{e}}r et al. - Unknown - ENSEMBLE ADVERSARIAL TRAINING ATTACKS AND DEFENSES.pdf:pdf},
+keywords = {Adversarial Training,Defense,Ensemble,Ensemble Adversarial Training},
+mendeley-tags = {Adversarial Training,Defense,Ensemble,Ensemble Adversarial Training},
+title = {{ENSEMBLE ADVERSARIAL TRAINING: ATTACKS AND DEFENSES}},
+year = {2018}
+}
+@techreport{Liao2018,
+abstract = {Neural networks are vulnerable to adversarial examples, which poses a threat to their application in security sensitive systems. We propose high-level representation guided denoiser (HGD) as a defense for image classification. Standard denoiser suffers from the error amplification effect, in which small residual adversarial noise is progressively amplified and leads to wrong classifications. HGD overcomes this problem by using a loss function defined as the difference between the target model's outputs activated by the clean image and denoised image. Compared with ensemble adversarial training which is the state-of-the-art defending method on large images, HGD has three advantages. First, with HGD as a defense, the target model is more robust to either white-box or black-box adversarial attacks. Second, HGD can be trained on a small subset of the images and generalizes well to other images and unseen classes. Third, HGD can be transferred to defend models other than the one guiding it. In NIPS competition on defense against ad-versarial attacks, our HGD solution won the first place and outperformed other models by a large margin. 1},
+annote = {denoising
+
+PGD vs. HGD vs. CGD
+PGD: pixel guided denoiser
+HGD: "high-level representation guided de- noiser"
+CGD: class label guided denoiser
+
+PAD: 
+Denoising Autoencoder (DAE) vs. Denoising Additive U-Net (DUNET)
+
+HDG (use the U-Net of DUNET):
+FGD vs.
+LGD},
+archivePrefix = {arXiv},
+arxivId = {1712.02976v2},
+author = {Liao, Fangzhou and Liang, Ming and Dong, Yinpeng and Pang, Tianyu and Hu, Xiaolin and Zhu, Jun},
+eprint = {1712.02976v2},
+file = {:C$\backslash$:/Users/Lanston/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Liao et al. - Unknown - Defense against Adversarial Attacks Using High-Level Representation Guided Denoiser.pdf:pdf},
+isbn = {1712.02976v2},
+keywords = {Defense,Denoising,U-net},
+mendeley-tags = {Defense,Denoising,U-net},
+pages = {10},
+title = {{Defense against Adversarial Attacks Using High-Level Representation Guided Denoiser}},
+url = {https://github.com/lfz/Guided-Denoise},
+year = {2018}
+}
