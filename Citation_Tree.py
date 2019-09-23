@@ -22,17 +22,17 @@ import random
 def search_by_head_tail(longText,head,tail):
     # this function will search for the first head matching the result
     # and then the first tail after the first head
-    
+
     posi_start=longText.find(head)
     posi_end=longText.find(tail,posi_start)
     length_head=len(head)
     phase_extracted=longText[(posi_start+length_head):posi_end]
-    
+
     return phase_extracted
 
 def cut_string(str,max_length):
     str_slices=str.split()
-    
+
     l_total=0
     str_total=''
     for word in str_slices:
@@ -46,28 +46,28 @@ def cut_string(str,max_length):
         else:
             str_total=str_total+'\n'+word
             l_total=l
-    
+
     return str_total
 
 def sort_dict(data_papers,column_i):
     # this function will sort the papers by years
-    
+
     #x[1] refers to value of x, while x[0] is the key.
-    data_papers_sorted_list=sorted(data_papers.items(), key=lambda x: x[1][column_i]) 
+    data_papers_sorted_list=sorted(data_papers.items(), key=lambda x: x[1][column_i])
 
     # convert the list back into the dictionary
     data_papers_sorted={}
     for paper in data_papers_sorted_list:
-        data_papers_sorted[paper[0]]=paper[1]      
-    
+        data_papers_sorted[paper[0]]=paper[1]
+
     return data_papers_sorted
 
 def vertices_less_dense(posi):
     # this function makes the vertices less dense in graph
-    
+
     coord=np.array(list(posi.values()))
     # distance matrix times 100 so that they won't be selected as the min value
-    distance_vrt=np.ones((num_vertices,num_vertices))*100 
+    distance_vrt=np.ones((num_vertices,num_vertices))*100
 
     # calculate distance
     for i in range(num_vertices-1):
@@ -79,24 +79,24 @@ def vertices_less_dense(posi):
 
     # range from num-1,...,0 (ignore num-1 since that don't contain useful info)
     for i in range(num_vertices-1):
-    
-        # in a sorted DAG, for every pair of vertices, 
+
+        # in a sorted DAG, for every pair of vertices,
         # one vert is at the "up-side", while one is at the "down side"
         i_up=i
         i_down=idx_min[i]
-    
+
         # drive vertice of i_down away from the cloest point
         dist_desired=0.7
         dist_now=np.linalg.norm(coord[i_up]-coord[i_down])
         shift_factor=(dist_desired-dist_now)*1
         coord[i_up]=coord[i_up]+(coord[i_up]-coord[i_down])*shift_factor
-    
+
     posi_new={}
     i=0
     for x in posi:
         posi_new[x]=coord[i]
         i+=1
-    
+
     return posi_new
 
 # sometimes we used /abs/, sometimes we used /#abs/. Depending on situation
@@ -105,10 +105,10 @@ absLinkSuffix = "/abstract"
 refLinkSuffix = "/references"
 
 # note that the .bib need to form a DAG. If not, please remove some papers
-bibtex_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\Many_Papers_DAG.bib"
+bibtex_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\My_Collection_DAG.bib"
 
 chrome_driver_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\chromedriver_v77.exe"
-    
+
 bibtex_file = open(bibtex_path, encoding='utf8')
 bib_database = bibtexparser.load(bibtex_file)
 
@@ -129,23 +129,23 @@ print("###    Section 1: Web scrapping    ###")
 data_all_papers={}
 j=0
 for paper in papers:
-    
+
     j+=1
     print("Paper: "+str(j)+" of "+str(num_papers))
-    
+
     if 'arxivid' in list(paper.keys()):
         arXivID_before=paper['arxivid']
-            
+
         if 'author' in list(paper.keys()):
             author=paper['author']
         else:
             author=''
-            
+
         if 'year' in list(paper.keys()):
             year=paper['year']
         else:
             year=''
-    
+
         # remove version number, which would not be used in the url
         vPosi=arXivID_before.find('v')
         if vPosi==-1:
@@ -154,30 +154,30 @@ for paper in papers:
             arXivID=arXivID_before[0:vPosi]
 
         # get Bibcode and title of the paper
-        absLink = linkPrefix + arXivID + absLinkSuffix    
+        absLink = linkPrefix + arXivID + absLinkSuffix
         driver.get(absLink)
         time.sleep(3)
-    
+
         pageSourceAbs=driver.page_source
-    
+
         bibCode=search_by_head_tail(pageSourceAbs,"bibcode=","\"")
 
         title=search_by_head_tail(pageSourceAbs,"<title>","</title>")
-        
+
         # use Chrome to check Reference page
-        refLink = linkPrefix + arXivID + refLinkSuffix    
+        refLink = linkPrefix + arXivID + refLinkSuffix
 
         # get reference info
         driver.get(refLink)
         time.sleep(3)
-    
+
         # get source code
         pageSourceRef=driver.page_source
-        
+
         num_Ref=search_by_head_tail(pageSourceRef,"References\n","</span>\n")
         num_Ref=search_by_head_tail(num_Ref,"(",")")
         print("Refrences: ("+str(num_Ref)+")")
-    
+
         # find the position of papers' titles
         positions=[m.start() for m in re.finditer("h3 class", pageSourceRef)]
         num_papers_one_page = len(positions)
@@ -192,10 +192,10 @@ for paper in papers:
             link_partial=pageSourceRef[(posi_a_start+10):posi_a_end]
             bibCode_child_i=link_partial[(link_partial.find('abs/')+4):link_partial.find('/abstract')]
             list_children.append(bibCode_child_i)
-        
+
         vrt_name_one_line = title + ' - ' + author + ' - ' + year
         vrt_name_multi_lines=cut_string(vrt_name_one_line,25)
-        
+
         # keep vrt_name_multi_lines,list_children to be the last two entries!!!
         one_paper_data=[author,year,title,arXivID,num_Ref, \
                         vrt_name_multi_lines,list_children]
@@ -208,10 +208,10 @@ print("###    Section 2: Draw Graph    ###")
 ##### Section: remove non selected children; create data frame #####
 
 # sort papers by years; 1 means the "2nd column" of one_paper_data
-data_all_papers=sort_dict(data_all_papers,1)   
-      
+data_all_papers=sort_dict(data_all_papers,1)
+
 bibCode_all_papers=list(data_all_papers.keys())
-    
+
 from_all_papers=[]
 to_all_papers=[]
 for bibCode_one_paper, data_one_paper in data_all_papers.items():
@@ -219,20 +219,20 @@ for bibCode_one_paper, data_one_paper in data_all_papers.items():
     list_children_remained=[x for x in list_children if x in bibCode_all_papers]
     data_one_paper[-1]=list_children_remained
     data_all_papers[bibCode_one_paper]=data_one_paper
-    
+
     # create data frame
     num_child=len(list_children_remained)
-    
+
     vrt_name_children_remained=[]
     for bibCode_child_i in list_children_remained:
         vrt_name_multi_lines=data_all_papers[bibCode_child_i][-2]
         vrt_name_children_remained.append(vrt_name_multi_lines)
 
     vrt_name_one_paper=data_all_papers[bibCode_one_paper][-2]
-        
+
     from_one_paper=vrt_name_children_remained # the older paper
     to_one_paper=[vrt_name_one_paper]*num_child # the newer paper
-    
+
     # concatenate the lists
     from_all_papers=from_all_papers+from_one_paper
     to_all_papers=to_all_papers+to_one_paper
@@ -241,7 +241,7 @@ for bibCode_one_paper, data_one_paper in data_all_papers.items():
 
 # Build a dataframe with 4 connections
 df = pd.DataFrame({ 'from':from_all_papers, 'to':to_all_papers})
- 
+
 # Build your graph
 G=nx.from_pandas_dataframe(df, 'from', 'to', create_using=nx.DiGraph())
 
@@ -268,6 +268,6 @@ for i in range(round(num_vertices*1.4)):
     posi_new = vertices_less_dense(posi_new)
 
 # if the graph doesn't look good, change figsize and rerun the last 3 lines
-plt.figure(1,figsize=(18,18)) 
+plt.figure(1,figsize=(18,18))
 nx.draw(G,pos=posi_new,with_labels=True, node_size=150, arrows=True)
 plt.show()

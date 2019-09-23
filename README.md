@@ -34,7 +34,7 @@ See the below example. Here, I’ve selected a list of papers in Mendeley about 
 
 ![Image 1 - Mendeley][5]
 
-Click **File->Export** and then save the papers’ metadata as **My Collection.bib**.
+Click **File->Export** and then save the papers’ metadata as **My_Collection_DAG.bib**.
 
 Download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository is for Chrome version 77 only)
 
