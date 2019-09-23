@@ -1,7 +1,6 @@
 # Citation-Graph-Python
- Auto-generation of Citation Graph of References in Python
 
-This is a Python version of a similar tool that I previously created in Wolfram Language.
+This Python tool will automatically generate citation graph of a given set of papers. This is a Python version of a similar tool that I previously created in Wolfram Language.
 
 Wolfram Language version: [citation-graph][2]
 
