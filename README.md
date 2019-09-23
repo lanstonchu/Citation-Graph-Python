@@ -4,9 +4,9 @@ This Python tool will automatically generate citation graph of a given set of pa
 
 Source Code and Data: [Original Wolfram Language version][2] and [Python version][3]
 
-1. download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository is for Chrome version 77 only)
+1. Download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository is for Chrome version 77 only)
 2. Select papers from your references management software (e.g. Mendeley) and export to .bib file.
-3. run **Citation_Tree.py** to draw citation graph
+3. Run **Citation_Tree.py** to draw citation graph
 
 Notes:
 
