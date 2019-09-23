@@ -105,9 +105,9 @@ absLinkSuffix = "/abstract"
 refLinkSuffix = "/references"
 
 # note that the .bib need to form a DAG. If not, please remove some papers
-bibtex_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation_Tree_Python\\Many_Papers_DAG.bib"
+bibtex_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\Many_Papers_DAG.bib"
 
-chrome_driver_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation_Tree_Python\\chromedriver.exe"
+chrome_driver_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\chromedriver_v77.exe"
     
 bibtex_file = open(bibtex_path, encoding='utf8')
 bib_database = bibtexparser.load(bibtex_file)
