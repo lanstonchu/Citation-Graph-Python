@@ -1,4 +1,6 @@
-# Citation-Graph-Python
+Project Title: **Automatic Generation of Academic Citation Graph (Python Version)**
+
+Also on: [WordPress][8]
 
 This Python tool will automatically generate citation graph of a given set of papers. This is a Python version of a similar tool that I previously created in Wolfram Language.
 
@@ -51,3 +53,4 @@ Enjoy.
 [5]: https://raw.githubusercontent.com/lanstonchu/citation-graph/master/Mendeley.png
 [6]: https://chromedriver.chromium.org/downloads
 [7]: https://en.wikipedia.org/wiki/Directed_acyclic_graph
+[8]: https://lanstonchu.wordpress.com/2019/09/22/automatic-generation-of-academic-citation-graph-python-version/
