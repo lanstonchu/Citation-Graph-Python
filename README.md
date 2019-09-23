@@ -1,7 +1,9 @@
 # Citation-Graph-Python
  Auto-generation of Citation Graph of References in Python
 
-This is a Python version of a [similar tool that I previously created in Wolfram Language][2].
+This is a Python version of a similar tool that I previously created in Wolfram Language.
+
+Wolfram Language version: [citation-graph][2]
 
 1. download Chrome Driver at https://chromedriver.chromium.org/downloads with respect to your Chrome version (the current version in My Github repository is for Chrome version 77 only)
 2. Select papers from your references management software (e.g. Mendeley) and export to .bib file.
