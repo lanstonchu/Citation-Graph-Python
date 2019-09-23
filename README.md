@@ -14,6 +14,7 @@ Notes:
 2. If your Chrome driver doesn't work, please confirm you are using the correct driver version.
 3. If the graph doesn't look good, you may want to change figsize and rerun the "last 3 lines only" to save time
 4. Or you may re-run starting from the line "posi={}"
+5. In my code, I set the desired distance between vertices to be 0.7, and I will loop through all vertices for 1.4*x times, where x is the number of vertices. You may want to adjust these parameters according to your own requirement in graph quality and run time.
 
 -----------------------------------------
 
