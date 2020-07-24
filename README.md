@@ -10,7 +10,7 @@ This Python tool will automatically generate a citation graph of a given set of 
 
 **Procedures:**
 
-1. Download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository is for Chrome version 77 only)
+1. Download Chrome Driver at [here][6] with respect to your Chrome version and OS (the current versions stored in my Github repository are for Chrome version v77 and v83 (default in code), and are  for Windows only)
 2. Select papers from your references management software (e.g. Mendeley) and export to .bib file.
 3. Run **Citation_Tree.py** to draw citation graph
 

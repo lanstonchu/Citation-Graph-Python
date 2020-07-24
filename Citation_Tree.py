@@ -22,7 +22,8 @@ import random
 def search_by_head_tail(longText,head,tail):
     # this function will search for the first head matching the result
     # and then the first tail after the first head
-
+	# e.g. search_by_head_tail("<id>123</id>", "<id>", "</id>") outputs "123"
+    
     posi_start=longText.find(head)
     posi_end=longText.find(tail,posi_start)
     length_head=len(head)
@@ -107,7 +108,7 @@ refLinkSuffix = "/references"
 # note that the .bib need to form a DAG. If not, please remove some papers
 bibtex_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\My_Collection_DAG.bib"
 
-chrome_driver_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\chromedriver_v77.exe"
+chrome_driver_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\chromedriver_win32_v83.exe"
 
 bibtex_file = open(bibtex_path, encoding='utf8')
 bib_database = bibtexparser.load(bibtex_file)
@@ -160,7 +161,7 @@ for paper in papers:
 
         pageSourceAbs=driver.page_source
 
-        bibCode=search_by_head_tail(pageSourceAbs,"bibcode=","\"")
+        bibCode=search_by_head_tail(pageSourceAbs,"bibcode=","\"") # bibCode as the key of data
 
         title=search_by_head_tail(pageSourceAbs,"<title>","</title>")
 
