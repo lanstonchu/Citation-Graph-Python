@@ -41,7 +41,7 @@ See the below example. Here, I’ve selected a list of papers in Mendeley about 
 
 Click **File->Export** and then save the papers’ metadata as **My_Collection_DAG.bib**.
 
-Download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository is for Chrome version 77 only)
+Download Chrome Driver at [here][6] with respect to your Chrome version (the current version in my Github repository are for Chrome version v77 and v83 only)
 
 Run the code **Citation_Tree.py**. This is the end product:
 
