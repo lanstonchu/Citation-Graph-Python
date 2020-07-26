@@ -33,7 +33,7 @@ In certain fields of academic studies (e.g. Deep Learning), academic papers are 
 
 I created a tool for you *homo academicus* to automatically create the said citation graph for any paper. This should be helpful for researchers to catch up on the trend of a rapidly changing field.
 
-First, if you are using Mendeley (or any other Reference Management Software), export your papers as a **.bib** file which should include the arXiv ID and issue year information. Then, use Mathematica to run the code. It will take you to the [Astrophysics Data System of Harvard][4] and find out the list of reference for each paper. Finally, a citation graph will be drawn with the help of Wolfram Language.
+First, if you are using Mendeley (or any other Reference Management Software), export your papers as a **.bib** file which should include the arXiv ID and issue year information. Then, use Python to run the code. It will take you to the [Astrophysics Data System of Harvard][4] and find out the list of reference for each paper. Finally, a citation graph will be drawn with the help of Python.
 
 See the below example. Here, I’ve selected a list of papers in Mendeley about adversarial examples (published in the past five years), and I want to know how they are related to each other (“citationally”).
 
