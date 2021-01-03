@@ -8,9 +8,9 @@
 
 import bibtexparser
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import time
 import re
+import argparse 
 
 # for drawing graphs
 import pandas as pd
@@ -100,24 +100,65 @@ def vertices_less_dense(posi):
 
     return posi_new
 
+parser = argparse.ArgumentParser()
+
+parser.prog = "Citation-Tree"
+parser.description = "Creates a reference graph from a BibTex bibliography." + \
+        "Note that the bibliography cannot contain cyclical references."
+parser.epilog = "Example usage: python Citation-Tree.py My_Collection_DAG.bib"
+
+parser.add_argument('bibfile', help="Path to the bibliograpy")
+parser.add_argument("--headless", action='store_true', help="Run in headless mode")
+# Bibtexparser normally ignores these by default, but this flag inverts that.
+parser.add_argument("--ignore_nonstandard_types", action='store_true',
+        help="Ignore non-standard BibTex entries")
+
+drivers = parser.add_mutually_exclusive_group()
+drivers.add_argument("--chrome", dest="webdriver", action="store_const", 
+        const="chrome", default="chrome", help="Use ChromeDriver (default)")
+drivers.add_argument("--firefox", dest="webdriver", action="store_const", 
+        const="firefox", help="Use GeckoDriver")
+drivers.add_argument("--phantomjs", dest="webdriver", action="store_const", 
+        const="phantomjs", help="Use GhostDriver")
+
+parser.add_argument('--driver-path', help="Path to webdriver binary")
+
+args = parser.parse_args()
+
 # sometimes we used /abs/, sometimes we used /#abs/. Depending on situation
 linkPrefix = "https://ui.adsabs.harvard.edu/#abs/"
 absLinkSuffix = "/abstract"
 refLinkSuffix = "/references"
 
-# note that the .bib need to form a DAG. If not, please remove some papers
-bibtex_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\My_Collection_DAG.bib"
-
-chrome_driver_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\chromedriver_win32_v83.exe"
-
-bibtex_file = open(bibtex_path, encoding='utf8')
-bib_database = bibtexparser.load(bibtex_file)
+with open(args.bibfile, encoding='utf8') as bibtex_file:
+    parser = bibtexparser.bparser.BibTexParser(
+        ignore_nonstandard_types=args.ignore_nonstandard_types
+    )
+    bib_database = bibtexparser.load(bibtex_file, parser)
 
 papers=bib_database.entries
 num_papers=len(papers)
 
-# open chrome
-driver = webdriver.Chrome(executable_path=chrome_driver_path)
+driver_kwargs = {}
+
+if args.webdriver == 'chrome':
+    driver_kwargs['options'] = webdriver.ChromeOptions()
+    driver = webdriver.Chrome
+elif args.webdriver == 'firefox':
+    driver_kwargs['options'] = webdriver.FirefoxOptions()
+    driver = webdriver.Firefox
+elif args.webdriver == 'phantomjs':
+    driver = webdriver.PhantomJS
+else:
+    raise ValueError("args.webdriver contains an unknown driver type")
+
+if args.driver_path:
+    driver_kwargs['executable_path'] = args.driver_path
+if args.headless and 'options' in driver_kwargs:
+    driver_kwargs['options'].add_argument('--headless')
+    driver_kwargs['options'].add_argument('--disable-gpu')
+
+driver = driver(**driver_kwargs)
 
 # surf Google as an initialization to keep time for later parts consistent
 driver.get("https://www.google.com/")
