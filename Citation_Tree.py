@@ -166,7 +166,7 @@ time.sleep(3)
 
 ##### Section: Get paper's data #####
 
-print("###    Section 1: Web scrapping    ###")
+print("###    Section 1: Web scraping    ###")
 
 data_all_papers={}
 j=0
@@ -175,73 +175,76 @@ for paper in papers:
     j+=1
     print("Paper: "+str(j)+" of "+str(num_papers))
 
-    if 'arxivid' in list(paper.keys()):
-        arXivID_before=paper['arxivid']
+    if not 'arxivid' in list(paper.keys()):
+        print(f'Entry "{ paper["ID"] }" has no arxivId present, skipping...')
+        continue
 
-        if 'author' in list(paper.keys()):
-            author=paper['author']
-        else:
-            author=''
+    arXivID_before=paper['arxivid']
 
-        if 'year' in list(paper.keys()):
-            year=paper['year']
-        else:
-            year=''
+    if 'author' in list(paper.keys()):
+        author=paper['author']
+    else:
+        author=''
 
-        # remove version number, which would not be used in the url
-        vPosi=arXivID_before.find('v')
-        if vPosi==-1:
-            arXivID=arXivID_before
-        else:
-            arXivID=arXivID_before[0:vPosi]
+    if 'year' in list(paper.keys()):
+        year=paper['year']
+    else:
+        year=''
 
-        # get Bibcode and title of the paper
-        absLink = linkPrefix + arXivID + absLinkSuffix
-        driver.get(absLink)
-        time.sleep(3)
+    # remove version number, which would not be used in the url
+    vPosi=arXivID_before.find('v')
+    if vPosi==-1:
+        arXivID=arXivID_before
+    else:
+        arXivID=arXivID_before[0:vPosi]
 
-        pageSourceAbs=driver.page_source
+    # get Bibcode and title of the paper
+    absLink = linkPrefix + arXivID + absLinkSuffix
+    driver.get(absLink)
+    time.sleep(3)
 
-        bibCode=search_by_head_tail(pageSourceAbs,"bibcode=","\"") # bibCode as the key of data
+    pageSourceAbs=driver.page_source
 
-        title=search_by_head_tail(pageSourceAbs,"<title>","</title>")
+    bibCode=search_by_head_tail(pageSourceAbs,"bibcode=","\"") # bibCode as the key of data
 
-        # use Chrome to check Reference page
-        refLink = linkPrefix + arXivID + refLinkSuffix
+    title=search_by_head_tail(pageSourceAbs,"<title>","</title>")
 
-        # get reference info
-        driver.get(refLink)
-        time.sleep(3)
+    # use Chrome to check Reference page
+    refLink = linkPrefix + arXivID + refLinkSuffix
 
-        # get source code
-        pageSourceRef=driver.page_source
+    # get reference info
+    driver.get(refLink)
+    time.sleep(3)
 
-        num_Ref=search_by_head_tail(pageSourceRef,"References\n","</span>\n")
-        num_Ref=search_by_head_tail(num_Ref,"(",")")
-        print("Refrences: ("+str(num_Ref)+")")
+    # get source code
+    pageSourceRef=driver.page_source
 
-        # find the position of papers' titles
-        positions=[m.start() for m in re.finditer("h3 class", pageSourceRef)]
-        num_papers_one_page = len(positions)
-        positions.insert(0,0)
+    num_Ref=search_by_head_tail(pageSourceRef,"References\n","</span>\n")
+    num_Ref=search_by_head_tail(num_Ref,"(",")")
+    print("Refrences: ("+str(num_Ref)+")")
 
-        list_children=[]
-        for i in range(num_papers_one_page):
-            posi_start=positions[i]
-            posi_end=positions[i+1]
-            posi_a_start=pageSourceRef.rfind("<a href=\"#", posi_start, posi_end)
-            posi_a_end=pageSourceRef.rfind("\" class=\"", posi_start, posi_end)
-            link_partial=pageSourceRef[(posi_a_start+10):posi_a_end]
-            bibCode_child_i=link_partial[(link_partial.find('abs/')+4):link_partial.find('/abstract')]
-            list_children.append(bibCode_child_i)
+    # find the position of papers' titles
+    positions=[m.start() for m in re.finditer("h3 class", pageSourceRef)]
+    num_papers_one_page = len(positions)
+    positions.insert(0,0)
 
-        vrt_name_one_line = title + ' - ' + author + ' - ' + year
-        vrt_name_multi_lines=cut_string(vrt_name_one_line,25)
+    list_children=[]
+    for i in range(num_papers_one_page):
+        posi_start=positions[i]
+        posi_end=positions[i+1]
+        posi_a_start=pageSourceRef.rfind("<a href=\"#", posi_start, posi_end)
+        posi_a_end=pageSourceRef.rfind("\" class=\"", posi_start, posi_end)
+        link_partial=pageSourceRef[(posi_a_start+10):posi_a_end]
+        bibCode_child_i=link_partial[(link_partial.find('abs/')+4):link_partial.find('/abstract')]
+        list_children.append(bibCode_child_i)
 
-        # keep vrt_name_multi_lines,list_children to be the last two entries!!!
-        one_paper_data=[author,year,title,arXivID,num_Ref, \
-                        vrt_name_multi_lines,list_children]
-        data_all_papers[bibCode]=one_paper_data
+    vrt_name_one_line = title + ' - ' + author + ' - ' + year
+    vrt_name_multi_lines=cut_string(vrt_name_one_line,25)
+
+    # keep vrt_name_multi_lines,list_children to be the last two entries!!!
+    one_paper_data=[author,year,title,arXivID,num_Ref, \
+                    vrt_name_multi_lines,list_children]
+    data_all_papers[bibCode]=one_paper_data
 
 driver.close()
 
