@@ -244,7 +244,7 @@ for bibCode_one_paper, data_one_paper in data_all_papers.items():
 df = pd.DataFrame({ 'from':from_all_papers, 'to':to_all_papers})
 
 # Build your graph
-G=nx.from_pandas_dataframe(df, 'from', 'to', create_using=nx.DiGraph())
+G=nx.from_pandas_edgelist(df, 'from', 'to', create_using=nx.DiGraph())
 
 # determine vertices' coordinate
 if not nx.is_directed_acyclic_graph(G):
