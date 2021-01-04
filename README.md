@@ -12,7 +12,11 @@ This Python tool will automatically generate a citation graph of a given set of 
 
 1. Download Chrome Driver at [here][6] with respect to your Chrome version and OS (the current versions stored in my Github repository are for Chrome version v77 and v83 (default in code), and are  for Windows only)
 2. Select papers from your references management software (e.g. Mendeley) and export to .bib file.
-3. Run **Citation_Tree.py** to draw citation graph
+3. Run **Citation_Tree.py** to draw citation graph. Examples:
+    1. Command lines example 1: run `python Citation_Tree.py --chrome --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib`
+    2. Command lines example 2 (headless): run `python Citation_Tree.py --headless --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib`
+    3. Spyder example 1: put `--chrome --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib` in **Run -> Configuration per file -> Command line options**
+    4. Spyder example 2: put `--headless --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib` in **Run -> Configuration per file -> Command line options**
 
 ---------------------------
 
