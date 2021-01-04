@@ -8,9 +8,9 @@
 
 import bibtexparser
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import time
 import re
+import argparse 
 
 # for drawing graphs
 import pandas as pd
@@ -100,24 +100,65 @@ def vertices_less_dense(posi):
 
     return posi_new
 
+parser = argparse.ArgumentParser()
+
+parser.prog = "Citation-Tree"
+parser.description = "Creates a reference graph from a BibTex bibliography." + \
+        "Note that the bibliography cannot contain cyclical references."
+parser.epilog = "Example usage: python Citation-Tree.py My_Collection_DAG.bib"
+
+parser.add_argument('bibfile', help="Path to the bibliograpy")
+parser.add_argument("--headless", action='store_true', help="Run in headless mode")
+# Bibtexparser normally ignores these by default, but this flag inverts that.
+parser.add_argument("--ignore_nonstandard_types", action='store_true',
+        help="Ignore non-standard BibTex entries")
+
+drivers = parser.add_mutually_exclusive_group()
+drivers.add_argument("--chrome", dest="webdriver", action="store_const", 
+        const="chrome", default="chrome", help="Use ChromeDriver (default)")
+drivers.add_argument("--firefox", dest="webdriver", action="store_const", 
+        const="firefox", help="Use GeckoDriver")
+drivers.add_argument("--phantomjs", dest="webdriver", action="store_const", 
+        const="phantomjs", help="Use GhostDriver")
+
+parser.add_argument('--driver-path', help="Path to webdriver binary")
+
+args = parser.parse_args()
+
 # sometimes we used /abs/, sometimes we used /#abs/. Depending on situation
 linkPrefix = "https://ui.adsabs.harvard.edu/#abs/"
 absLinkSuffix = "/abstract"
 refLinkSuffix = "/references"
 
-# note that the .bib need to form a DAG. If not, please remove some papers
-bibtex_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\My_Collection_DAG.bib"
-
-chrome_driver_path="C:\\Users\\Lanston\\Documents\\GitHub\\Citation-Graph-Python\\chromedriver_win32_v83.exe"
-
-bibtex_file = open(bibtex_path, encoding='utf8')
-bib_database = bibtexparser.load(bibtex_file)
+with open(args.bibfile, encoding='utf8') as bibtex_file:
+    parser = bibtexparser.bparser.BibTexParser(
+        ignore_nonstandard_types=args.ignore_nonstandard_types
+    )
+    bib_database = bibtexparser.load(bibtex_file, parser)
 
 papers=bib_database.entries
 num_papers=len(papers)
 
-# open chrome
-driver = webdriver.Chrome(executable_path=chrome_driver_path)
+driver_kwargs = {}
+
+if args.webdriver == 'chrome':
+    driver_kwargs['options'] = webdriver.ChromeOptions()
+    driver = webdriver.Chrome
+elif args.webdriver == 'firefox':
+    driver_kwargs['options'] = webdriver.FirefoxOptions()
+    driver = webdriver.Firefox
+elif args.webdriver == 'phantomjs':
+    driver = webdriver.PhantomJS
+else:
+    raise ValueError("args.webdriver contains an unknown driver type")
+
+if args.driver_path:
+    driver_kwargs['executable_path'] = args.driver_path
+if args.headless and 'options' in driver_kwargs:
+    driver_kwargs['options'].add_argument('--headless')
+    driver_kwargs['options'].add_argument('--disable-gpu')
+
+driver = driver(**driver_kwargs)
 
 # surf Google as an initialization to keep time for later parts consistent
 driver.get("https://www.google.com/")
@@ -125,7 +166,7 @@ time.sleep(3)
 
 ##### Section: Get paper's data #####
 
-print("###    Section 1: Web scrapping    ###")
+print("###    Section 1: Web scraping    ###")
 
 data_all_papers={}
 j=0
@@ -134,73 +175,76 @@ for paper in papers:
     j+=1
     print("Paper: "+str(j)+" of "+str(num_papers))
 
-    if 'arxivid' in list(paper.keys()):
-        arXivID_before=paper['arxivid']
+    if not 'arxivid' in list(paper.keys()):
+        print(f'Entry "{ paper["ID"] }" has no arxivId present, skipping...')
+        continue
 
-        if 'author' in list(paper.keys()):
-            author=paper['author']
-        else:
-            author=''
+    arXivID_before=paper['arxivid']
 
-        if 'year' in list(paper.keys()):
-            year=paper['year']
-        else:
-            year=''
+    if 'author' in list(paper.keys()):
+        author=paper['author']
+    else:
+        author=''
 
-        # remove version number, which would not be used in the url
-        vPosi=arXivID_before.find('v')
-        if vPosi==-1:
-            arXivID=arXivID_before
-        else:
-            arXivID=arXivID_before[0:vPosi]
+    if 'year' in list(paper.keys()):
+        year=paper['year']
+    else:
+        year=''
 
-        # get Bibcode and title of the paper
-        absLink = linkPrefix + arXivID + absLinkSuffix
-        driver.get(absLink)
-        time.sleep(3)
+    # remove version number, which would not be used in the url
+    vPosi=arXivID_before.find('v')
+    if vPosi==-1:
+        arXivID=arXivID_before
+    else:
+        arXivID=arXivID_before[0:vPosi]
 
-        pageSourceAbs=driver.page_source
+    # get Bibcode and title of the paper
+    absLink = linkPrefix + arXivID + absLinkSuffix
+    driver.get(absLink)
+    time.sleep(3)
 
-        bibCode=search_by_head_tail(pageSourceAbs,"bibcode=","\"") # bibCode as the key of data
+    pageSourceAbs=driver.page_source
 
-        title=search_by_head_tail(pageSourceAbs,"<title>","</title>")
+    bibCode=search_by_head_tail(pageSourceAbs,"bibcode=","\"") # bibCode as the key of data
 
-        # use Chrome to check Reference page
-        refLink = linkPrefix + arXivID + refLinkSuffix
+    title=search_by_head_tail(pageSourceAbs,"<title>","</title>")
 
-        # get reference info
-        driver.get(refLink)
-        time.sleep(3)
+    # use Chrome to check Reference page
+    refLink = linkPrefix + arXivID + refLinkSuffix
 
-        # get source code
-        pageSourceRef=driver.page_source
+    # get reference info
+    driver.get(refLink)
+    time.sleep(3)
 
-        num_Ref=search_by_head_tail(pageSourceRef,"References\n","</span>\n")
-        num_Ref=search_by_head_tail(num_Ref,"(",")")
-        print("Refrences: ("+str(num_Ref)+")")
+    # get source code
+    pageSourceRef=driver.page_source
 
-        # find the position of papers' titles
-        positions=[m.start() for m in re.finditer("h3 class", pageSourceRef)]
-        num_papers_one_page = len(positions)
-        positions.insert(0,0)
+    num_Ref=search_by_head_tail(pageSourceRef,"References\n","</span>\n")
+    num_Ref=search_by_head_tail(num_Ref,"(",")")
+    print("Refrences: ("+str(num_Ref)+")")
 
-        list_children=[]
-        for i in range(num_papers_one_page):
-            posi_start=positions[i]
-            posi_end=positions[i+1]
-            posi_a_start=pageSourceRef.rfind("<a href=\"#", posi_start, posi_end)
-            posi_a_end=pageSourceRef.rfind("\" class=\"", posi_start, posi_end)
-            link_partial=pageSourceRef[(posi_a_start+10):posi_a_end]
-            bibCode_child_i=link_partial[(link_partial.find('abs/')+4):link_partial.find('/abstract')]
-            list_children.append(bibCode_child_i)
+    # find the position of papers' titles
+    positions=[m.start() for m in re.finditer("h3 class", pageSourceRef)]
+    num_papers_one_page = len(positions)
+    positions.insert(0,0)
 
-        vrt_name_one_line = title + ' - ' + author + ' - ' + year
-        vrt_name_multi_lines=cut_string(vrt_name_one_line,25)
+    list_children=[]
+    for i in range(num_papers_one_page):
+        posi_start=positions[i]
+        posi_end=positions[i+1]
+        posi_a_start=pageSourceRef.rfind("<a href=\"#", posi_start, posi_end)
+        posi_a_end=pageSourceRef.rfind("\" class=\"", posi_start, posi_end)
+        link_partial=pageSourceRef[(posi_a_start+10):posi_a_end]
+        bibCode_child_i=link_partial[(link_partial.find('abs/')+4):link_partial.find('/abstract')]
+        list_children.append(bibCode_child_i)
 
-        # keep vrt_name_multi_lines,list_children to be the last two entries!!!
-        one_paper_data=[author,year,title,arXivID,num_Ref, \
-                        vrt_name_multi_lines,list_children]
-        data_all_papers[bibCode]=one_paper_data
+    vrt_name_one_line = title + ' - ' + author + ' - ' + year
+    vrt_name_multi_lines=cut_string(vrt_name_one_line,25)
+
+    # keep vrt_name_multi_lines,list_children to be the last two entries!!!
+    one_paper_data=[author,year,title,arXivID,num_Ref, \
+                    vrt_name_multi_lines,list_children]
+    data_all_papers[bibCode]=one_paper_data
 
 driver.close()
 
@@ -244,7 +288,7 @@ for bibCode_one_paper, data_one_paper in data_all_papers.items():
 df = pd.DataFrame({ 'from':from_all_papers, 'to':to_all_papers})
 
 # Build your graph
-G=nx.from_pandas_dataframe(df, 'from', 'to', create_using=nx.DiGraph())
+G=nx.from_pandas_edgelist(df, 'from', 'to', create_using=nx.DiGraph())
 
 # determine vertices' coordinate
 if not nx.is_directed_acyclic_graph(G):
