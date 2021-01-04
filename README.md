@@ -16,7 +16,7 @@ This Python tool will automatically generate a citation graph of a given set of 
     1. Command lines example 1: run `python Citation_Tree.py --chrome --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib`
     2. Command lines example 2 (headless): run `python Citation_Tree.py --headless --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib`
     3. Spyder example 1: put `--chrome --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib` in **Run -> Configuration per file -> Command line options**
-    4. Spyder example 2: put `--headless --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib` in **Run -> Configuration per file -> Command line options**
+    4. Spyder example 2 (headless): put `--headless --driver-path .//chromedriver_win32_v83.exe .//My_Collection_DAG.bib` in **Run -> Configuration per file -> Command line options**
 
 ---------------------------
 
